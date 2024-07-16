@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: "spring-boot"
+
+  kafka:
+    bootstrap-servers: "kafka1:9092"
+    topic: "Test-Springboot-avro"
+
+    consumer:
+      group-id: "group121"
+      autooffsetreset: "earliest"
+      key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+      value-deserializer: "io.confluent.kafka.serializers.KafkaAvroDeserializer"
+      properties:
+        schema:
+          registry:
+            url: "http://kafka1:8081"
+
+        avro:
+          specific:
+            reader: true
+
+    producer:
+      key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+      value-serializer: "io.confluent.kafka.serializers.KafkaAvroSerializer"
+      properties:
+        schema:
+          registry:
+            url: "http://kafka1:8081"
+
+
+
+
